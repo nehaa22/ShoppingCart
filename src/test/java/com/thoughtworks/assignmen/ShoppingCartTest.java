@@ -8,7 +8,7 @@ public class ShoppingCartTest {
     @Test
     public void givenShoppingCart_whenAddOneItem_ThenShouldReturnTotalCart() {
         ShoppingCart shoppingCart = new ShoppingCart("apple",1,0.99);
-        int cartTotal = shoppingCart.calculateCartTotal();
+        double cartTotal = shoppingCart.calculateCartTotal();
         Assertions.assertEquals(0.99, cartTotal);
     }
 }
