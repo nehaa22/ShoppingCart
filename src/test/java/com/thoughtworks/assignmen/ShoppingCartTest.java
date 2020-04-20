@@ -11,4 +11,11 @@ public class ShoppingCartTest {
         double cartTotal = shoppingCart.calculateCartTotal();
         Assertions.assertEquals(0.99, cartTotal);
     }
+
+    @Test
+    public void givenShoppingCart_whenAddOneItemWithFiveQuantity_ThenShouldReturnTotalCart() {
+        ShoppingCart shoppingCart = new ShoppingCart("apple",5,0.99);
+        double cartTotal = shoppingCart.calculateCartTotal();
+        Assertions.assertEquals(4.95, cartTotal);
+    }
 }
