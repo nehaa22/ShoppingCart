@@ -8,8 +8,8 @@ public class ShoppingCart {
     int quantity;
     double price;
 
-    public ShoppingCart(String proiductName, int quantity, double price) {
-        this.productName = proiductName;
+    public ShoppingCart(String productName, int quantity, double price) {
+        this.productName = productName;
         this.quantity = quantity;
         this.price = price;
     }

@@ -18,4 +18,11 @@ public class ShoppingCartTest {
         double cartTotal = shoppingCart.calculateTotalCart();
         Assertions.assertEquals(4.95, cartTotal);
     }
+
+    @Test
+    public void givenShoppingCart_whenAddOneMaskWithFiveQuantity_ThenShouldReturnTotalCart() {
+        ShoppingCart shoppingCart = new ShoppingCart("mask",5,1.99);
+        double cartTotal = shoppingCart.calculateTotalCart();
+        Assertions.assertEquals(9.95, cartTotal);
+    }
 }
