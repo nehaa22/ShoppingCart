@@ -49,4 +49,16 @@ public class ShoppingCartTest {
         double cartTotal = shoppingCart.calculateTotalCart();
         Assertions.assertEquals(8.94, cartTotal);
     }
+
+    @Test
+    public void givenShoppingCart_whenAddThreeMaskAndThreeApple_ThenShouldReturnTotalCartOfAppleAndMaskIncludingTax(){
+        Product productOne = new Product("apple",3,0.99);
+        Product productTwo = new Product("mask",3,1.99);
+        List<Product> products = new ArrayList<>();
+        products.add(productOne);
+        products.add(productTwo);
+        ShoppingCart shoppingCart = new ShoppingCart(products);
+        double cartTotal = shoppingCart.calculateTotalCart();
+        Assertions.assertEquals(9.12, cartTotal);
+    }
 }
