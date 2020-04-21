@@ -15,6 +15,7 @@ public class ShoppingCart {
     }
 
     public List<Double> calculateTotalCart() {
+
         getTotalCartForEachProduct();
 
         double preciseTotalCartWithTax = getPreciseTaxValue(totalCart * salesTaxPercent);
