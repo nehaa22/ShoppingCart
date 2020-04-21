@@ -4,24 +4,20 @@ import java.util.List;
 
 public class ShoppingCart {
 
+    List<Product> products;
+
     double totalCart;
 
-    String productName;
-    int quantity;
-    double price;
-
-    public ShoppingCart(String productName, int quantity, double price) {
-        this.productName = productName;
-        this.quantity = quantity;
-        this.price = price;
-    }
 
     public ShoppingCart(List<Product> products) {
+        this.products = products;
     }
 
 
     public double calculateTotalCart() {
-        totalCart = quantity * price;
+        for (Product item : products) {
+            totalCart = item.quantity * item.price;
+        }
         return totalCart;
     }
 }

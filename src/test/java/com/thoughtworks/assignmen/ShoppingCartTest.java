@@ -10,21 +10,30 @@ public class ShoppingCartTest {
 
     @Test
     public void givenShoppingCart_whenAddOneApple_ThenShouldReturnTotalCart() {
-        ShoppingCart shoppingCart = new ShoppingCart("apple",1,0.99);
+        Product productOne = new Product("apple",1,0.99);
+        List<Product> products = new ArrayList<>();
+        products.add(productOne);
+        ShoppingCart shoppingCart = new ShoppingCart(products);
         double cartTotal = shoppingCart.calculateTotalCart();
         Assertions.assertEquals(0.99, cartTotal);
     }
 
     @Test
     public void givenShoppingCart_whenAddOneAppleWithFiveQuantity_ThenShouldReturnTotalCart() {
-        ShoppingCart shoppingCart = new ShoppingCart("apple",5,0.99);
+        Product productOne = new Product("apple",5,0.99);
+        List<Product> products = new ArrayList<>();
+        products.add(productOne);
+        ShoppingCart shoppingCart = new ShoppingCart(products);
         double cartTotal = shoppingCart.calculateTotalCart();
         Assertions.assertEquals(4.95, cartTotal);
     }
 
     @Test
     public void givenShoppingCart_whenAddOneMaskWithFiveQuantity_ThenShouldReturnTotalCart() {
-        ShoppingCart shoppingCart = new ShoppingCart("mask",5,1.99);
+        Product productOne = new Product("mask",5,1.99);
+        List<Product> products = new ArrayList<>();
+        products.add(productOne);
+        ShoppingCart shoppingCart = new ShoppingCart(products);
         double cartTotal = shoppingCart.calculateTotalCart();
         Assertions.assertEquals(9.95, cartTotal);
     }
