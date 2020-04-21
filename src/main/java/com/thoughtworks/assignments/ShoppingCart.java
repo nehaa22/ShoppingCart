@@ -1,5 +1,6 @@
 package com.thoughtworks.assignments;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class ShoppingCart {
@@ -16,6 +17,6 @@ public class ShoppingCart {
         for (Product item : products) {
             totalCart += item.quantity * item.price;
         }
-        return totalCart;
+        return Double.parseDouble(new DecimalFormat("##.##").format(totalCart*salesTax));
     }
 }
