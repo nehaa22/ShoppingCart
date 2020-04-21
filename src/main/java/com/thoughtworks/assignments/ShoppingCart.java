@@ -1,22 +1,29 @@
 package com.thoughtworks.assignments;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShoppingCart {
 
     private List<Product> products;
     private double totalCart = 0.0;
-    static final double salesTax = 1.02;
+    static final double salesTaxPercent = 1.02;
+    public List<Double> output = new ArrayList<>();
 
     public ShoppingCart(List<Product> products) {
         this.products = products;
     }
 
-    public double calculateTotalCart() {
+    public List<Double> calculateTotalCart() {
         for (Product item : products) {
             totalCart += item.quantity * item.price;
         }
-        return Double.parseDouble(new DecimalFormat("##.##").format(totalCart*salesTax));
+
+        double totalCartWithTax = Double.parseDouble(new DecimalFormat("##.##").format(totalCart * salesTaxPercent));
+        double salesTax = Double.parseDouble(new DecimalFormat("##.##").format(totalCartWithTax - totalCart));
+
+        return Arrays.asList(salesTax, totalCartWithTax);
     }
 }
