@@ -4,16 +4,15 @@ import java.util.List;
 
 public class ShoppingCart {
 
-    List<Product> products;
-
-    double totalCart = 0.0;
+    private List<Product> products;
+    private double totalCart = 0.0;
+    static final double salesTax = 1.02;
 
     public ShoppingCart(List<Product> products) {
         this.products = products;
     }
 
     public double calculateTotalCart() {
-        totalCart = 0;
         for (Product item : products) {
             totalCart += item.quantity * item.price;
         }
