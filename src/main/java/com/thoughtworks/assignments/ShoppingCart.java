@@ -15,14 +15,18 @@ public class ShoppingCart {
     }
 
     public List<Double> calculateTotalCart() {
-        for (Product item : products) {
-            totalCart += item.quantity * item.price;
-        }
+        getTotalCartForEachProduct();
 
         double preciseTotalCartWithTax = getPreciseTaxValue(totalCart * salesTaxPercent);
         double preciseSalesTax = getPreciseTaxValue(preciseTotalCartWithTax - totalCart);
 
         return Arrays.asList(preciseSalesTax, preciseTotalCartWithTax);
+    }
+
+    private void getTotalCartForEachProduct() {
+        for (Product item : products) {
+            totalCart += item.quantity * item.price;
+        }
     }
 
     private double getPreciseTaxValue(double v) {
