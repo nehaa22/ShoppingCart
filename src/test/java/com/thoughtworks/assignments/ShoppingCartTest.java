@@ -1,4 +1,4 @@
-package com.thoughtworks.assignmen;
+package com.thoughtworks.assignments;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -40,14 +40,14 @@ public class ShoppingCartTest {
 
     @Test
     public void givenShoppingCart_whenAddThreeMaskAndThreeApple_ThenShouldReturnTotalCartOfAppleAndMask(){
-        Product productOne = new Product("apple",1,0.99);
-        Product productTwo = new Product("apple",1,0.99);
+        Product productOne = new Product("apple",3,0.99);
+        Product productTwo = new Product("mask",3,1.99);
         List<Product> products = new ArrayList<>();
         products.add(productOne);
         products.add(productTwo);
         ShoppingCart shoppingCart = new ShoppingCart(products);
         double cartTotal = shoppingCart.calculateTotalCart();
-        Assertions.assertEquals(0.99, cartTotal);
+        Assertions.assertEquals(8.94, cartTotal);
 
     }
 }

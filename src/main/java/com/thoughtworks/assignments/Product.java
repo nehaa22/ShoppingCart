@@ -1,8 +1,6 @@
-package com.thoughtworks.assignmen;
+package com.thoughtworks.assignments;
 
 public class Product {
-
-    double totalCart;
 
     String productName;
     int quantity;
