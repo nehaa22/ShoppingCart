@@ -1,7 +1,6 @@
 package com.thoughtworks.assignments;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,9 +19,13 @@ public class ShoppingCart {
             totalCart += item.quantity * item.price;
         }
 
-        double totalCartWithTax = Double.parseDouble(new DecimalFormat("##.##").format(totalCart * salesTaxPercent));
-        double salesTax = Double.parseDouble(new DecimalFormat("##.##").format(totalCartWithTax - totalCart));
+        double preciseTotalCartWithTax = getPreciseTaxValue(totalCart * salesTaxPercent);
+        double preciseSalesTax = getPreciseTaxValue(preciseTotalCartWithTax - totalCart);
 
-        return Arrays.asList(salesTax, totalCartWithTax);
+        return Arrays.asList(preciseSalesTax, preciseTotalCartWithTax);
+    }
+
+    private double getPreciseTaxValue(double v) {
+        return Double.parseDouble(new DecimalFormat("##.##").format(v));
     }
 }
