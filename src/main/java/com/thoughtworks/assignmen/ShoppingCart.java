@@ -1,5 +1,7 @@
 package com.thoughtworks.assignmen;
 
+import java.util.List;
+
 public class ShoppingCart {
 
     double totalCart;
@@ -13,6 +15,10 @@ public class ShoppingCart {
         this.quantity = quantity;
         this.price = price;
     }
+
+    public ShoppingCart(List<Product> products) {
+    }
+
 
     public double calculateTotalCart() {
         totalCart = quantity * price;
