@@ -48,6 +48,5 @@ public class ShoppingCartTest {
         ShoppingCart shoppingCart = new ShoppingCart(products);
         double cartTotal = shoppingCart.calculateTotalCart();
         Assertions.assertEquals(8.94, cartTotal);
-
     }
 }
