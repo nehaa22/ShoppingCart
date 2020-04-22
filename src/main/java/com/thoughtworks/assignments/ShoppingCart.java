@@ -1,26 +1,22 @@
 package com.thoughtworks.assignments;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ShoppingCart {
 
     private double totalCart = 0.0;
     private static final double salesTaxPercent = 1.02;
-    private int appleCount = 0;
-    private int maskCount = 0;
     private double cartAmountWithTax = 0.0;
-
+    Map<Product, Integer> productQuantities = new HashMap<>();
 
     public double getTotalCart() {
         return totalCart;
     }
 
-    public double getAppleCount() {
-        return appleCount;
-    }
-
-    public double getMaskCount() {
-        return maskCount;
+    public int getQuantity(Product product){
+        return productQuantities.get(product);
     }
 
     public double getTotalCartWithTax() {
@@ -38,11 +34,12 @@ public class ShoppingCart {
     }
 
     private void incrementQuantity(Product product, int quantity) {
-        if (product instanceof Apple) {
-            appleCount += quantity;
-        } else {
-            maskCount += quantity;
+        if(productQuantities.containsKey(product)){
+            Integer existingQuantity = productQuantities.get(product);
+            productQuantities.put(product, existingQuantity + quantity);
+            return;
         }
+        productQuantities.put(product,quantity);
     }
 
     private double getProductTotal(Product product, int quantity) {
