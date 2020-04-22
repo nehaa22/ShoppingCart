@@ -1,15 +1,6 @@
 package com.thoughtworks.assignments;
 
-public class Product {
+public abstract class Product {
 
-    String productName;
-    int quantity;
-    double price;
-
-    public Product(String productName, int quantity, double price) {
-        this.productName = productName;
-        this.quantity = quantity;
-        this.price = price;
-    }
-
+    public abstract double getPrice();
 }
