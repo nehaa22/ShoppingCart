@@ -44,5 +44,9 @@ public class ShoppingCart {
     private double getProductTotal(Product product, int quantity) {
         return product.getPrice() * quantity;
     }
+
+    public void addCart(Product product, int quantity, String offer) {
+        return;
+    }
 }
 
