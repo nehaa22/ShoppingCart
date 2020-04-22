@@ -32,12 +32,12 @@ public class ShoppingCart {
     }
 
     public void addCart(Product product, int quantity) {
-        getQuantity(product, quantity);
+        incrementQuantity(product, quantity);
         totalCart += getProductTotal(product, quantity);
         cartAmountWithTax = format(totalCart * salesTaxPercent);
     }
 
-    private void getQuantity(Product product, int quantity) {
+    private void incrementQuantity(Product product, int quantity) {
         if (product instanceof Apple) {
             appleCount += quantity;
         } else {
