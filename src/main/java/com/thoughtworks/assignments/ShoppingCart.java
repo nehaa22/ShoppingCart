@@ -32,15 +32,21 @@ public class ShoppingCart {
     }
 
     public void addCart(Product product, int quantity) {
+        getQuantity(product, quantity);
+        totalCart += getProductTotal(product, quantity);
+        cartAmountWithTax = format(totalCart * salesTaxPercent);
+    }
+
+    private void getQuantity(Product product, int quantity) {
         if (product instanceof Apple) {
             appleCount += quantity;
         } else {
             maskCount += quantity;
         }
-        totalCart += product.getPrice() * quantity;
+    }
 
-        cartAmountWithTax = format(totalCart * salesTaxPercent);
-
+    private double getProductTotal(Product product, int quantity) {
+        return product.getPrice() * quantity;
     }
 
     private double format(double value) {
