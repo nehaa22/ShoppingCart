@@ -10,6 +10,7 @@ public class ShoppingCart {
     private static final double salesTaxPercent = 1.02;
     private double cartAmountWithTax = 0.0;
     Map<Product, Integer> productQuantities = new HashMap<>();
+    AppleBuyThreeForTwo offer = new AppleBuyThreeForTwo();
 
     public double getTotalCart() {
         return totalCart;
@@ -48,6 +49,22 @@ public class ShoppingCart {
 
     private double format(double value) {
         return Double.parseDouble(new DecimalFormat("##.##").format(value));
+    }
+
+    public void addCart(Product product, int quantity,AppleBuyThreeForTwo offer) {
+        double extraTotalCart = 0;
+        int offerQuantity = 2;
+        incrementQuantity(product, quantity);
+        totalCart += getProductTotal(product, offerQuantity);
+        offerQuantity++;
+        if(!(offerQuantity == quantity)) {
+            extraTotalCart = totalCart + getProductTotal(product, 1);
+
+        }
+
+
+//        double finalPrice = totalCart/extraTotalCart * 100;
+
     }
 }
 

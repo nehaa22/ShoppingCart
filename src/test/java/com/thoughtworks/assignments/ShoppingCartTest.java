@@ -59,12 +59,25 @@ public class ShoppingCartTest {
         shoppingCart.addCart(apple,2);
         shoppingCart.addCart(apple,1);
         shoppingCart.addCart(mask,3);
-        Assertions.assertEquals(8.94, shoppingCart.getTotalCart());
+        Assertions.assertEquals(0.18, shoppingCart.getSalesTax());
         Assertions.assertEquals(9.12, shoppingCart.getTotalCartWithTax());
         Assertions.assertEquals(3, shoppingCart.getQuantity(mask));
         Assertions.assertEquals(3, shoppingCart.getQuantity(apple));
+    }
 
+    @Test
+    public void givenShoppingCart_whenAddThreeMaskAndFiveAppleWithOffer_ThenShouldReturnTotalCartOfAppleAndMaskIncludingTax(){
 
-
+        Product apple = new Apple();
+        Product mask = new Mask();
+        AppleBuyThreeForTwo offer = new AppleBuyThreeForTwo();
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.addCart(apple,5, offer);
+        shoppingCart.addCart(mask,3);
+        Assertions.assertEquals(0.16, shoppingCart.getSalesTax());
+        Assertions.assertEquals(8.11, shoppingCart.getTotalCart());
+        Assertions.assertEquals(9.12, shoppingCart.getTotalCartWithTax());
+        Assertions.assertEquals(3, shoppingCart.getQuantity(mask));
+        Assertions.assertEquals(5, shoppingCart.getQuantity(apple));
     }
 }
