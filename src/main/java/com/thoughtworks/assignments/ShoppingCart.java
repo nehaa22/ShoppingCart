@@ -1,6 +1,7 @@
 package com.thoughtworks.assignments;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ShoppingCart {
@@ -22,6 +23,23 @@ public class ShoppingCart {
 
     public double getSalesTax() {
         return cartCalculator.getSalesTax();
+    }
+
+    public String getContent(List<Product> products) {
+        String message = "The cart contains ";
+        for (int index = 0; index < products.size(); index++) {
+            Product product = products.get(index);
+            if (products.size() == 1) {
+                return (" the cart contains " + productQuantities.get(product.getName()) + " " + product.getName() + " of " + product.getPrice() + " each ");
+            } else {
+                if(index == products.size()-1){
+                    message = message.concat(" and ");
+                }
+
+                message = message.concat(productQuantities.get(product.getName()) + " " + product.getName() + " of " + product.getPrice() + " each");
+            }
+        }
+        return message;
     }
 
     public void addCart(Product product, int quantity) {
@@ -60,6 +78,7 @@ public class ShoppingCart {
     public double getDiscount() {
         return 0.99;
     }
+
 
 }
 
