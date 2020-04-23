@@ -65,8 +65,6 @@ public class ShoppingCartTest {
         Assertions.assertEquals(3, shoppingCart.getQuantity("Mask"));
         Assertions.assertEquals(3, shoppingCart.getQuantity("Apple"));
         Assertions.assertEquals("The cart contains 3 Apple of 0.99 each and 3 Mask of 1.99 each",shoppingCart.getContent(products));
-
-
     }
 
     @Test
