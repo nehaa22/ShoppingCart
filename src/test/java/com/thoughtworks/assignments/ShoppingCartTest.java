@@ -18,7 +18,7 @@ public class ShoppingCartTest {
         Assertions.assertEquals(0.02, shoppingCart.getSalesTax());
         Assertions.assertEquals(1.01, shoppingCart.getTotalCartWithTax());
         Assertions.assertEquals(1, shoppingCart.getQuantity("Apple"));
-        Assertions.assertEquals("And the cart contains 1 Apple of 0.99 each",shoppingCart.getContent(products));
+        Assertions.assertEquals("The cart contains 1 Apple of 0.99 each",shoppingCart.getContent(products));
     }
 
     @Test
@@ -31,7 +31,7 @@ public class ShoppingCartTest {
         Assertions.assertEquals(0.1, shoppingCart.getSalesTax());
         Assertions.assertEquals(5.05, shoppingCart.getTotalCartWithTax());
         Assertions.assertEquals(5, shoppingCart.getQuantity("Apple"));
-        Assertions.assertEquals("And the cart contains 5 Apple of 0.99 each",shoppingCart.getContent(products));
+        Assertions.assertEquals("The cart contains 5 Apple of 0.99 each",shoppingCart.getContent(products));
 
 
     }
@@ -46,7 +46,7 @@ public class ShoppingCartTest {
         Assertions.assertEquals(0.2, shoppingCart.getSalesTax());
         Assertions.assertEquals(10.15, shoppingCart.getTotalCartWithTax());
         Assertions.assertEquals(5, shoppingCart.getQuantity("Mask"));
-        Assertions.assertEquals("And the cart contains 5 Mask of 1.99 each",shoppingCart.getContent(products));
+        Assertions.assertEquals("The cart contains 5 Mask of 1.99 each",shoppingCart.getContent(products));
 
     }
 

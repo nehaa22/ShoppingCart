@@ -30,7 +30,7 @@ public class ShoppingCart {
         for (int index = 0; index < products.size(); index++) {
             Product product = products.get(index);
             if (products.size() == 1)
-                return (" the cart contains " + productQuantities.get(product.getName()) + " " + product.getName() + " of " + product.getPrice() + " each ");
+                return message.concat(productQuantities.get(product.getName()) + " " + product.getName() + " of " + product.getPrice() + " each");
 
             if (index == products.size() - 1) {
                 message = message.concat(" and ");
