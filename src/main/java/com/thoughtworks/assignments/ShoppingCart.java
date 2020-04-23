@@ -44,19 +44,15 @@ public class ShoppingCart {
     }
 
     public void addCart(Product product, int quantity, String offer) {
-
-        int offerQuantity = 2;
-        int freeQuantity = 1;
-
-        int totalQuantity = offerQuantity + freeQuantity;
-
-        incrementQuantity(product, totalQuantity);
-
-        double amount = getProductTotal(product, offerQuantity);
-        double extraAmount = getProductTotal(product, freeQuantity);
-
-
+        int newQuantity = quantity + 1;
+        incrementQuantity(product, newQuantity);
+        double amount = getProductTotal(product, quantity);
         cartCalculator.updateAmount(amount);
     }
+
+    public double getDiscount() {
+        return 0.99;
+    }
+
 }
 
