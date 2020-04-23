@@ -44,10 +44,17 @@ public class ShoppingCart {
     }
 
     public void addCart(Product product, int quantity, String offer) {
-        int newQuantity = quantity + 1;
-        incrementQuantity(product, newQuantity);
-        double amount = getProductTotal(product, quantity);
-        cartCalculator.updateAmount(amount);
+        if (quantity == 2) {
+            int totalQuantity = quantity + 1;
+            incrementQuantity(product, totalQuantity);
+            double amount = getProductTotal(product, quantity);
+            cartCalculator.updateAmount(amount);
+        } else {
+            int offerQuantity = quantity - 1;
+            incrementQuantity(product, quantity);
+            double amount = getProductTotal(product, offerQuantity);
+            cartCalculator.updateAmount(amount);
+        }
     }
 
     public double getDiscount() {

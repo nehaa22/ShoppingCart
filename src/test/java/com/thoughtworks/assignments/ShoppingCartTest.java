@@ -76,4 +76,15 @@ public class ShoppingCartTest {
         Assertions.assertEquals(3, shoppingCart.getQuantity("Apple"));
         Assertions.assertEquals(0.99, shoppingCart.getDiscount());
     }
+
+    @Test
+    public void givenShoppingCart_whenAddThreeApplesWithOffer_ThenShouldReturnTotalCartOfAppleIncludingTax(){
+        Product apple = new Product("Apple", 0.99);
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.addCart(apple,3, "Buy3For2");
+        Assertions.assertEquals(3, shoppingCart.getQuantity("Apple"));
+        Assertions.assertEquals(2.02, shoppingCart.getTotalCartWithTax());
+        Assertions.assertEquals(0.04, shoppingCart.getSalesTax());
+        Assertions.assertEquals(0.99, shoppingCart.getDiscount());
+    }
 }
