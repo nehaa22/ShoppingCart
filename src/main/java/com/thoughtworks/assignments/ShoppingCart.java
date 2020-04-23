@@ -4,14 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ShoppingCart {
-    private static final double salesTaxPercent = 0.02;
     private ShoppingCartCalculator cartCalculator;
     private Map<String, Integer> productQuantities = new HashMap<>();
 
+
     ShoppingCart() {
-        double initialAmount = 0.0;
-        double itemsTotal = 0.0;
-        this.cartCalculator = new ShoppingCartCalculator(initialAmount, itemsTotal, salesTaxPercent);
+        this.cartCalculator = new ShoppingCartCalculator();
     }
 
     public int getQuantity(String name) {
@@ -43,10 +41,6 @@ public class ShoppingCart {
 
     private double getProductTotal(Product product, int quantity) {
         return product.getPrice() * quantity;
-    }
-
-    public void addCart(Product product, int quantity, String offer) {
-        return;
     }
 }
 
