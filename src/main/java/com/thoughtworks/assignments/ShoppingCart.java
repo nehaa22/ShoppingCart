@@ -2,26 +2,18 @@ package com.thoughtworks.assignments;
 
 import com.thoughtworks.assignments.Exception.ProductNotFoundException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ShoppingCart {
 
     private ShoppingCartCalculator cartCalculator;
-    private List<CartItem> cartItems = new ArrayList<>();
-
+    private CartItems cartItems;
 
     ShoppingCart() {
         this.cartCalculator = new ShoppingCartCalculator();
+        this.cartItems = new CartItems();
     }
 
-    public int getQuantity(String name) throws ProductNotFoundException {
-        for (CartItem item : cartItems) {
-            if (item.isExists(name)) {
-                return item.getQuantity();
-            }
-        }
-        throw new ProductNotFoundException();
+    public int getQuantity(String productName) throws ProductNotFoundException {
+        return cartItems.quantityFor(productName);
     }
 
     public double getTotalCartWithTax() {
@@ -33,19 +25,9 @@ public class ShoppingCart {
     }
 
     public void addCart(Product product, int quantity) {
-        updateQuantity(product, quantity);
+        cartItems.updatedQuantity(product,quantity);
         double amount = getProductTotal(product, quantity);
         cartCalculator.updateAmount(amount);
-    }
-
-    private void updateQuantity(Product product, int quantity) {
-        for (CartItem item : cartItems) {
-            if (item.isExists(product.getName())) {
-                item.updateQuantity(quantity);
-                return;
-            }
-        }
-        cartItems.add(new CartItem(product, quantity));
     }
 
     private double getProductTotal(Product product, int quantity) {
@@ -55,12 +37,12 @@ public class ShoppingCart {
     public void addCart(Product product, int quantity, String offer) {
         if (quantity == 2) {
             int totalQuantity = quantity + 1;
-            updateQuantity(product, totalQuantity);
+            cartItems.updatedQuantity(product,totalQuantity);
             double amount = getProductTotal(product, quantity);
             cartCalculator.updateAmount(amount);
         } else {
             int offerQuantity = quantity - 1;
-            updateQuantity(product, quantity);
+            cartItems.updatedQuantity(product,quantity);
             double amount = getProductTotal(product, offerQuantity);
             cartCalculator.updateAmount(amount);
         }
@@ -72,21 +54,7 @@ public class ShoppingCart {
 
     @Override
     public String toString() {
-        String message = "The cart contains ";
-        int lengthOfProduct = cartItems.size();
-        for (int cartIndex = 0; cartIndex < lengthOfProduct; cartIndex++) {
-            CartItem cartItem = cartItems.get(cartIndex);
-            Product product = cartItem.getProduct();
-            if (lengthOfProduct == 1)
-                return message.concat((cartItem.getQuantity()) + " " + product.getName() + " of " + product.getPrice() + " each");
-
-            if (cartIndex == lengthOfProduct - 1) {
-                message = message.concat(" and ");
-
-            }
-            message = message.concat((cartItem.getQuantity()) + " " + product.getName() + " of " + product.getPrice() + " each");
-        }
-        return message;
+        return cartItems.getContents();
     }
 }
 
