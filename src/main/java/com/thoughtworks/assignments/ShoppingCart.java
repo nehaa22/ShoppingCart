@@ -1,20 +1,27 @@
 package com.thoughtworks.assignments;
 
-import java.util.HashMap;
+import com.thoughtworks.assignments.Exception.ProductNotFoundException;
+
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ShoppingCart {
+
     private ShoppingCartCalculator cartCalculator;
-    private Map<String, Integer> productQuantities = new HashMap<>();
+    private List<CartItem> cartItems = new ArrayList<>();
 
 
     ShoppingCart() {
         this.cartCalculator = new ShoppingCartCalculator();
     }
 
-    public int getQuantity(String name) {
-        return productQuantities.get(name);
+    public int getQuantity(String name) throws ProductNotFoundException {
+        for (CartItem item : cartItems) {
+            if (item.isExists(name)) {
+                return item.getQuantity();
+            }
+        }
+        throw new ProductNotFoundException();
     }
 
     public double getTotalCartWithTax() {
@@ -25,34 +32,20 @@ public class ShoppingCart {
         return cartCalculator.getSalesTax();
     }
 
-    public String getContent(List<Product> products) {
-        String message = "The cart contains ";
-        for (int index = 0; index < products.size(); index++) {
-            Product product = products.get(index);
-            if (products.size() == 1)
-                return message.concat(productQuantities.get(product.getName()) + " " + product.getName() + " of " + product.getPrice() + " each");
-
-            if (index == products.size() - 1) {
-                message = message.concat(" and ");
-            }
-            message = message.concat(productQuantities.get(product.getName()) + " " + product.getName() + " of " + product.getPrice() + " each");
-        }
-        return message;
-    }
-
     public void addCart(Product product, int quantity) {
-        incrementQuantity(product, quantity);
+        updateQuantity(product, quantity);
         double amount = getProductTotal(product, quantity);
         cartCalculator.updateAmount(amount);
     }
 
-    private void incrementQuantity(Product product, int quantity) {
-        if (productQuantities.containsKey(product.getName())) {
-            Integer existingQuantity = productQuantities.get(product.getName());
-            productQuantities.put(product.getName(), existingQuantity + quantity);
-            return;
+    private void updateQuantity(Product product, int quantity) {
+        for (CartItem item : cartItems) {
+            if (item.isExists(product.getName())) {
+                item.updateQuantity(quantity);
+                return;
+            }
         }
-        productQuantities.put(product.getName(), quantity);
+        cartItems.add(new CartItem(product, quantity));
     }
 
     private double getProductTotal(Product product, int quantity) {
@@ -62,12 +55,12 @@ public class ShoppingCart {
     public void addCart(Product product, int quantity, String offer) {
         if (quantity == 2) {
             int totalQuantity = quantity + 1;
-            incrementQuantity(product, totalQuantity);
+            updateQuantity(product, totalQuantity);
             double amount = getProductTotal(product, quantity);
             cartCalculator.updateAmount(amount);
         } else {
             int offerQuantity = quantity - 1;
-            incrementQuantity(product, quantity);
+            updateQuantity(product, quantity);
             double amount = getProductTotal(product, offerQuantity);
             cartCalculator.updateAmount(amount);
         }
@@ -77,6 +70,23 @@ public class ShoppingCart {
         return 0.99;
     }
 
+    @Override
+    public String toString() {
+        String message = "The cart contains ";
+        int lengthOfProduct = cartItems.size();
+        for (int cartIndex = 0; cartIndex < lengthOfProduct; cartIndex++) {
+            CartItem cartItem = cartItems.get(cartIndex);
+            Product product = cartItem.getProduct();
+            if (lengthOfProduct == 1)
+                return message.concat((cartItem.getQuantity()) + " " + product.getName() + " of " + product.getPrice() + " each");
 
+            if (cartIndex == lengthOfProduct - 1) {
+                message = message.concat(" and ");
+
+            }
+            message = message.concat((cartItem.getQuantity()) + " " + product.getName() + " of " + product.getPrice() + " each");
+        }
+        return message;
+    }
 }
 
