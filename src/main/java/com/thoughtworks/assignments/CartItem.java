@@ -10,19 +10,25 @@ public class CartItem {
         this.quantity = quantity;
     }
 
-    public int getQuantity() {
-        return this.quantity;
-    }
-
     public boolean isExists(String productName) {
         return product.getName().equals(productName);
     }
 
-    public void updateQuantity(int quantity) {
+    public void incrementQuantity(int quantity) {
         this.quantity += quantity;
     }
 
-    public Product getProduct() {
-        return product;
+    public double getPrice() {
+        return product.getPrice() * quantity;
     }
+
+    @Override
+    public String toString() {
+        return "CartItem{" +
+                "product=" + product +
+                ", quantity=" + quantity +
+                '}';
+    }
+
+
 }
