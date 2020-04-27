@@ -53,6 +53,55 @@ public class ShoppingCart {
         return cartItem;
     }
 
+    private CartItem cartItemForOfferIn(Product product, int quantity) {
+
+        int freeQuantity = 1;
+        int offerQuantity;
+
+        CartItem cartItem;
+        CartItem cartItemWithOffer = null;
+
+        cartItem = new CartItem(product, quantity);
+        if (quantity % 2 != 0) {
+            offerQuantity = quantity + freeQuantity;
+            itemsTotalWithoutOffer += cartItem.getPrice() - product.getPrice();
+        } else {
+            itemsTotalWithoutOffer += cartItem.getPrice();
+            offerQuantity = quantity;
+
+        }
+
+        if (quantity > 2) {
+            cartItemWithOffer = new CartItem(product, offerQuantity);
+            itemsTotalWithOffer = cartItemWithOffer.getPrice();
+
+            discount = itemsTotalWithOffer - itemsTotalWithoutOffer;
+            itemsTotal = itemsTotalWithoutOffer - discount;
+
+            tax = format(itemsTotal * SALES_TAX_PERCENT);
+            total = format(itemsTotal + tax);
+
+            for (CartItem item : cartItems) {
+                if (item.isExists(product.getName())) {
+                    cartItemWithOffer = item;
+                    break;
+                }
+            }
+        }
+        return cartItemWithOffer;
+
+    }
+
+    public void addCart(Product product, int quantity, String offer) {
+        CartItem cartItem = cartItemForOfferIn(product, quantity); //1
+
+        if (!cartItems.contains(cartItem)) {
+            cartItems.add(cartItem);
+            return;
+        }
+        cartItem.incrementQuantity(quantity);
+    }
+
     public double getDiscount() {
         return format(discount);
     }
