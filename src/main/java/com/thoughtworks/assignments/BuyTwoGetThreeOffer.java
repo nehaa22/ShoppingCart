@@ -1,6 +1,6 @@
 package com.thoughtworks.assignments;
 
-import java.text.DecimalFormat;
+import static com.thoughtworks.assignments.Formatter.format;
 
 public class BuyTwoGetThreeOffer extends Offer {
     Product offerProduct = new Product("Apple", 0.99);
@@ -31,9 +31,5 @@ public class BuyTwoGetThreeOffer extends Offer {
 
         CartItem discountItem = new CartItem(offerProduct, discountableCount);
         return format(discountItem.getPrice());
-    }
-
-    private double format(double value) {
-        return Double.parseDouble(new DecimalFormat("##.##").format(value));
     }
 }

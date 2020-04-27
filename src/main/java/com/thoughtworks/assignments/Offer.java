@@ -1,7 +1,8 @@
 package com.thoughtworks.assignments;
 
-import java.text.DecimalFormat;
 import java.util.List;
+
+import static com.thoughtworks.assignments.Formatter.format;
 
 public abstract class Offer implements IShoppingCart {
     protected final IShoppingCart shoppingCart;
@@ -18,20 +19,17 @@ public abstract class Offer implements IShoppingCart {
     @Override
     public double getItemsTotal() {
         double discount = getOfferDiscount();
-        double itemTotal = format(shoppingCart.getItemsTotal() - discount);
-        return itemTotal;
+        return format(shoppingCart.getItemsTotal() - discount);
     }
 
     @Override
     public double getSalesTax() {
-        double salesTax = format(getItemsTotal() * 0.02);
-        return salesTax;
+        return format(getItemsTotal() * SALES_TAX_PERCENT);
     }
 
     @Override
     public double getTotalCartWithTax() {
-        double total = format(getItemsTotal() + getSalesTax());
-        return total;
+        return format(getItemsTotal() + getSalesTax());
     }
 
     @Override
@@ -44,10 +42,6 @@ public abstract class Offer implements IShoppingCart {
     @Override
     public List<CartItem> getCartItems() {
         return shoppingCart.getCartItems();
-    }
-
-    private double format(double value) {
-        return Double.parseDouble(new DecimalFormat("##.##").format(value));
     }
 
     @Override

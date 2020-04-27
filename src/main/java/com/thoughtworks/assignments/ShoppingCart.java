@@ -1,19 +1,15 @@
 package com.thoughtworks.assignments;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static com.thoughtworks.assignments.Formatter.format;
+
 public class ShoppingCart implements IShoppingCart {
-    private static final double SALES_TAX_PERCENT = 0.02;
     protected List<CartItem> cartItems;
-    private double total = 0.0;
     protected double itemsTotal = 0.0;
     private double tax;
-    private double itemsTotalWithoutOffer = 0;
-    private double itemsTotalWithOffer = 0;
-    private double discount = 0;
 
     ShoppingCart() {
         this.cartItems = new ArrayList<>();
@@ -29,8 +25,7 @@ public class ShoppingCart implements IShoppingCart {
     }
 
     public double getTotalCartWithTax() {
-        total = format(getItemsTotal() + tax);
-        return this.total;
+        return format(getItemsTotal() + tax);
     }
 
     public double getSalesTax() {
@@ -62,11 +57,8 @@ public class ShoppingCart implements IShoppingCart {
     }
 
     public double getDiscount() {
+        double discount = 0;
         return format(discount);
-    }
-
-    private double format(double value) {
-        return Double.parseDouble(new DecimalFormat("##.##").format(value));
     }
 
     @Override
@@ -75,6 +67,4 @@ public class ShoppingCart implements IShoppingCart {
                 "cartItems=" + cartItems +
                 '}';
     }
-
-
 }
