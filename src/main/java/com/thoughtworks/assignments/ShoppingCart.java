@@ -11,6 +11,9 @@ public class ShoppingCart {
     private double total = 0.0;
     private double itemsTotal = 0.0;
     private double tax;
+    private  double itemsTotalWithOffer= 0.0;
+    private double itemsTotalWithoutOffer = 0.0;
+    double discount = 0;
 
     ShoppingCart() {
         this.cartItems = new ArrayList<>();
@@ -50,6 +53,11 @@ public class ShoppingCart {
         return cartItem;
     }
 
+    public double getDiscount() {
+        return format(discount);
+    }
+
+
     private double format(double value) {
         return Double.parseDouble(new DecimalFormat("##.##").format(value));
     }
@@ -60,7 +68,6 @@ public class ShoppingCart {
                 "cartItems=" + cartItems +
                 '}';
     }
-
 
 }
 
