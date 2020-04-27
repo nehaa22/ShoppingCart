@@ -18,6 +18,10 @@ public class CartItem {
         this.quantity += quantity;
     }
 
+    public int getQuantity() {
+        return this.quantity;
+    }
+
     public double getPrice() {
         return product.getPrice() * quantity;
     }
@@ -29,6 +33,4 @@ public class CartItem {
                 ", quantity=" + quantity +
                 '}';
     }
-
-
 }
