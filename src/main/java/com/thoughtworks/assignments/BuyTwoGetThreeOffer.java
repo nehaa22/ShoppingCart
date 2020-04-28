@@ -1,12 +1,12 @@
 package com.thoughtworks.assignments;
 
-import static com.thoughtworks.assignments.Formatter.format;
+import static com.thoughtworks.assignments.Utility.format;
 
 public class BuyTwoGetThreeOffer extends Offer {
     Product offerProduct = new Product("Apple", 0.99);
     private CartItem cartItem;
 
-    public BuyTwoGetThreeOffer(IShoppingCart shoppingCart) {
+    public BuyTwoGetThreeOffer(Cart shoppingCart) {
         super(shoppingCart);
     }
 
@@ -26,7 +26,6 @@ public class BuyTwoGetThreeOffer extends Offer {
         int discountableCount = (productCount - ineligibleCount) / totalBuyQuantity;
         if (ineligibleCount == offerQuantity) {
             shoppingCart.addCart(offerProduct, freeQuantity);
-            discountableCount += freeQuantity;
         }
 
         CartItem discountItem = new CartItem(offerProduct, discountableCount);

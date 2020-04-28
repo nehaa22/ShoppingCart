@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.thoughtworks.assignments.Formatter.format;
+import static com.thoughtworks.assignments.Utility.SALES_TAX_PERCENT;
+import static com.thoughtworks.assignments.Utility.format;
 
-public class ShoppingCart implements IShoppingCart {
+public class Cart {
     protected List<CartItem> cartItems;
     protected double itemsTotal = 0.0;
     private double tax;
 
-    ShoppingCart() {
+    Cart() {
         this.cartItems = new ArrayList<>();
     }
 
@@ -19,7 +20,7 @@ public class ShoppingCart implements IShoppingCart {
         return this.itemsTotal;
     }
 
-    @Override
+//    @Override
     public List<CartItem> getCartItems() {
         return Collections.unmodifiableList(cartItems);
     }

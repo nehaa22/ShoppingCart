@@ -2,12 +2,13 @@ package com.thoughtworks.assignments;
 
 import java.util.List;
 
-import static com.thoughtworks.assignments.Formatter.format;
+import static com.thoughtworks.assignments.Utility.SALES_TAX_PERCENT;
+import static com.thoughtworks.assignments.Utility.format;
 
-public abstract class Offer implements IShoppingCart {
-    protected final IShoppingCart shoppingCart;
+public abstract class Offer extends Cart {
+    Cart shoppingCart;
 
-    Offer(IShoppingCart shoppingCart) {
+    Offer(Cart shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
 
