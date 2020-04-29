@@ -89,4 +89,26 @@ public class ShoppingCartTest {
         Assertions.assertEquals(4.26, shoppingCart.getDiscount());
         Assertions.assertEquals("ShoppingCart{cartItems=[CartItem{product=Product{name='Apple', price=0.99}, quantity=10}, CartItem{product=Product{name='Mask', price=1.99}, quantity=3}]}", shoppingCart.toString());
     }
+
+    @Test
+    public void givenShoppingCart_whenAddOneAppleFiveTimesWithExtraOffer_ThenShouldReturnTotalCartOfAppleIncludingTax() {
+        Product apple = new Product("Apple", 0.99);
+        Product mask = new Product("Mask", 1.99);
+        Cart shoppingCart = new TenPercentOffOnCart(
+                new BuyTwoGetThreeOffer(
+                        new Cart()));
+        shoppingCart.addCart(apple, 1);
+        shoppingCart.addCart(apple, 1);
+        shoppingCart.addCart(apple, 1);
+        shoppingCart.addCart(apple, 1);
+        shoppingCart.addCart(apple, 1);
+        shoppingCart.addCart(apple, 5);
+        shoppingCart.addCart(mask, 2);
+        shoppingCart.addCart(mask, 1);
+
+        Assertions.assertEquals(0.23, shoppingCart.getSalesTax());
+        Assertions.assertEquals(11.84, shoppingCart.getTotalCartWithTax());
+        Assertions.assertEquals(4.26, shoppingCart.getDiscount());
+        Assertions.assertEquals("ShoppingCart{cartItems=[CartItem{product=Product{name='Apple', price=0.99}, quantity=10}, CartItem{product=Product{name='Mask', price=1.99}, quantity=3}]}", shoppingCart.toString());
+    }
 }

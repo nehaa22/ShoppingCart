@@ -20,7 +20,6 @@ public class Cart {
         return this.itemsTotal;
     }
 
-//    @Override
     public List<CartItem> getCartItems() {
         return Collections.unmodifiableList(cartItems);
     }
@@ -35,7 +34,7 @@ public class Cart {
     }
 
     public void addCart(Product product, int quantity) {
-        CartItem cartItem = cartItemFor(product, quantity);
+        CartItem cartItem = updateCart(product, quantity);
 
         if (!cartItems.contains(cartItem)) {
             cartItems.add(cartItem);
@@ -44,7 +43,7 @@ public class Cart {
         cartItem.incrementQuantity(quantity);
     }
 
-    private CartItem cartItemFor(Product product, int quantity) {
+    private CartItem updateCart(Product product, int quantity) {
         CartItem cartItem = new CartItem(product, quantity);
         itemsTotal += cartItem.getPrice();
 
@@ -61,6 +60,7 @@ public class Cart {
         double discount = 0;
         return format(discount);
     }
+
 
     @Override
     public String toString() {

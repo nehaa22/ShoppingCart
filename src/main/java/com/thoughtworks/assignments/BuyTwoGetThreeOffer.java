@@ -18,13 +18,13 @@ public class BuyTwoGetThreeOffer extends Offer {
             }
         }
 
-        int offerQuantity = 2;
+        int buyQuantity = 2;
         int freeQuantity = 1;
-        int totalBuyQuantity = offerQuantity + freeQuantity;
+        int totalBuyQuantity = buyQuantity + freeQuantity;
         int productCount = cartItem.getQuantity();
         int ineligibleCount = productCount % totalBuyQuantity;
         int discountableCount = (productCount - ineligibleCount) / totalBuyQuantity;
-        if (ineligibleCount == offerQuantity) {
+        if (ineligibleCount == buyQuantity) {
             shoppingCart.addCart(offerProduct, freeQuantity);
         }
 

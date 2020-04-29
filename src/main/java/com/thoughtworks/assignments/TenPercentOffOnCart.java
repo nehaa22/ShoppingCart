@@ -2,7 +2,7 @@ package com.thoughtworks.assignments;
 
 import static com.thoughtworks.assignments.Utility.format;
 
-public class TenPercentOffOnCart extends Offer {
+class TenPercentOffOnCart extends Offer {
     public TenPercentOffOnCart(Cart shoppingCart) {
         super(shoppingCart);
     }
